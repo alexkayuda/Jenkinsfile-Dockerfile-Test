@@ -2,10 +2,6 @@ String cron_string = BRANCH_NAME == "master" ? "*/5 * * * *" : ""
 
 pipeline {
     agent any
-    // triggers { cron(cron_string) }
-    environment {
-//         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
-    }
     stages {
         stage('Build Docker Image') {
             steps {
