@@ -1,5 +1,3 @@
-instructions-docker.txt
-instructions-jenkins.txt
+*
 
-Pull_from_dh_Jenkinsfile
-sub-pipeline.Jenkinsfile
+!Jenkinsfile
