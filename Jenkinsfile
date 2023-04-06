@@ -4,22 +4,27 @@ pipeline {
     agent any
     // triggers { cron(cron_string) }
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
+//         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
     }
     stages {
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
-                sh 'docker build -t alexkayuda/my-alpine-python3-image .'
+                sh 'docker build -t ubuntu-test .'
+            }
+        }
+        stage('Start Docker Container') {
+            steps {
+                sh 'docker run --name ubuntu-test-container -dit ubuntu-test'
             }
         }
         stage('Run HERE') {
             steps {
-                sh 'docker run alexkayuda/my-alpine-python3-image python3 hello_here.py'
+                sh 'docker exec -it ubuntu-test-container python3 hello_here.py'
             }
         }
         stage('Run THERE') {
             steps {
-                sh 'docker run alexkayuda/my-alpine-python3-image python3 hello_there.py'
+                sh 'docker exec -it ubuntu-test-container python3 hello_there.py'
             }
         }
         stage("Finally"){
