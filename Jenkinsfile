@@ -1,9 +1,7 @@
 String cron_string = BRANCH_NAME == "master" ? "*/5 * * * *" : ""
 
 pipeline {
-    agent {
-        label 'docker'
-    }
+    agent any
     stages {
         stage('Build Docker Image') {
             steps {
