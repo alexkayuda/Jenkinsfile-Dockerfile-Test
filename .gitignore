@@ -1,5 +1,7 @@
-instructions-docker.txt
-instructions-jenkins.txt
+*
 
-Pull_from_dh_Jenkinsfile
-sub-pipeline.Jenkinsfile
+!Dockerfile
+!Jenkinsfile
+!hello_here.py
+!hello_there.py
+!print_credentials.py

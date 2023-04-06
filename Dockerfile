@@ -1,14 +1,17 @@
-# syntax=docker/dockerfile:1.3
+# syntax=docker/dockerfile:latest
 
-FROM python:alpine3.16
+# Download base image ubuntu 22.04
+FROM ubuntu:22.04
 
-RUN apk update && apk upgrade && apk add --no-cache bash
+# LABEL about the custom image
+LABEL maintainer = "alex"
+LABEL version = "1.0"
+LABEL description = "This is a test"
 
-RUN pip3 install requests && pip3 install pyvmomi
+# Update Ubuntu Software repository
+RUN apt update && apt upgrade -y
 
-RUN mkdir test_project
-
-WORKDIR test_project
+WORKDIR my-working-directory
 
 COPY ./hello_here.py             ./hello_here.py
 COPY ./hello_there.py            ./hello_there.py
@@ -19,5 +22,5 @@ RUN chmod +x ./hello_there.py
 RUN chmod +x ./print_credentials.py
 
 
+CMD ["/bin/bash"]
 # CMD [ "python", "hello_there.py"]
-CMD ['/bin/sh']
